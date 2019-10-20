@@ -46,7 +46,8 @@ RUN  echo "deb http://archive.ubuntu.com/ubuntu bionic main restricted universe 
      chmod 0755 /usr/sbin/supervisord
 
 RUN  add-apt-repository ppa:thomas-schiex/blender && \
+     add-apt-repository ppa:graphics-drivers/ppa && \
      apt-get update && \
-     apt-get install -y blender
+     apt-get install -y blender nvidia-driver-440 nvidia-cuda-toolkit
 
 COPY supervisor.conf /etc/supervisor.conf
