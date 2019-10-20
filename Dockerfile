@@ -5,10 +5,10 @@ ARG  FULL_NAME="Anthony Rusdi"
 ARG  USERNAME="anthony"
 ARG  PASSWORD="p@ssw0rd@021"
 
-RUN  echo "deb http://repo.antrusd.me/ubuntu bionic main restricted universe multiverse" > /etc/apt/sources.list && \
-     echo "deb http://repo.antrusd.me/ubuntu bionic-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
-     echo "deb http://repo.antrusd.me/ubuntu bionic-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
-     echo "deb http://repo.antrusd.me/ubuntu bionic-security main restricted universe multiverse" >> /etc/apt/sources.list && \
+RUN  echo "deb http://archive.ubuntu.com/ubuntu bionic main restricted universe multiverse" > /etc/apt/sources.list && \
+     echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+     echo "deb http://archive.ubuntu.com/ubuntu bionic-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
+     echo "deb http://security.ubuntu.com/ubuntu bionic-security main restricted universe multiverse" >> /etc/apt/sources.list && \
      apt-get update && \
      apt-get --no-install-recommends install -y xubuntu-icon-theme && \
      apt-get --no-install-recommends install -y sudo \
