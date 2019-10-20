@@ -50,5 +50,3 @@ RUN  add-apt-repository ppa:thomas-schiex/blender && \
      apt-get install -y blender
 
 COPY supervisor.conf /etc/supervisor.conf
-
-ENTRYPOINT ["/usr/sbin/supervisord", "-c", "/etc/supervisor.conf"]
