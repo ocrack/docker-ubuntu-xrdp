@@ -6,7 +6,7 @@ ARG  USERNAME="anthony"
 ARG  PASSWORD="p@ssw0rd@021"
 
 COPY supervisor.conf /etc/supervisor.conf
-COPY run-xrdp-server /usr/sbin/run-xrdp-server
+COPY start-xrdp-server /usr/sbin/start-xrdp-server
 
 RUN  apt-get update && \
      apt-get dist-upgrade -y  && \
@@ -41,8 +41,14 @@ RUN  apt-get update && \
      chown 1000:1000 -R /home/${USERNAME} && \
      echo ${USERNAME}:${PASSWORD} | chpasswd -c SHA512 && \
      curl -L -o /usr/sbin/supervisord https://github.com/ochinchina/supervisord/releases/download/v${SUPERVISORD_VERSION}/supervisord_${SUPERVISORD_VERSION}_linux_amd64 && \
-     chmod 0755 /usr/sbin/supervisord /usr/sbin/run-xrdp-server
+     chmod 0755 /usr/sbin/supervisord /usr/sbin/start-xrdp-server
 
 RUN  add-apt-repository ppa:thomas-schiex/blender && \
      apt-get update && \
      apt-get install -y blender
+
+RUN  curl -L -o /tmp/dragondisk_1.0.5-0ubuntu_amd64.deb http://www.s3-client.com/download-amazon-s3-client/dragondisk_1.0.5-0ubuntu_amd64.deb && \
+     apt install -y /tmp/dragondisk_1.0.5-0ubuntu_amd64.deb && \
+     curl -L -o /tmp/rclone-v1.49.5-linux-amd64.deb https://downloads.rclone.org/v1.49.5/rclone-v1.49.5-linux-amd64.deb && \
+     apt install -y /tmp/rclone-v1.49.5-linux-amd64.deb && \
+     rm -fr /tmp/*
